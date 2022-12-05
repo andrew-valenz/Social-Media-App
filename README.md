@@ -1,3 +1,5 @@
+![](./assets/wireframe.png)
+
 # Plan
 
 ## Table
