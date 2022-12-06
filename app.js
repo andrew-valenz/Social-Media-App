@@ -5,7 +5,7 @@ import './auth/user.js';
 
 /* Get DOM Elements */
 const user = getUser();
-console.log(user);
+
 /* State */
 
 /* Events */

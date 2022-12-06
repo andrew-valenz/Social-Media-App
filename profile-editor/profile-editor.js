@@ -15,10 +15,10 @@ const user = getUser();
 
 window.addEventListener('load', async () => {
     const response = await getProfile(user.id);
-    console.log('user', user);
+    // console.log('user', user);
     error = response.error;
-    profile = response.data;
-    console.log('profile', profile);
+    profile = response;
+    // console.log('profile', profile);
 
     if (error) {
         errorDisplay.textContent = error.message;
@@ -29,5 +29,32 @@ window.addEventListener('load', async () => {
         if (profile.bio) {
             bioInput.value = profile.bio;
         }
+    }
+});
+
+profileForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    updateBtn.disabled = true;
+    updateBtn.textContent = 'Saving...';
+
+    const formData = new FormData(profileForm);
+
+    const profileObj = {
+        username: formData.get('username'),
+        bio: formData.get('bio'),
+    };
+
+    // console.log('profileObj', profileObj);
+    const response = await upsertProfile(profileObj);
+
+    // console.log('response', response);
+    error = response.error;
+
+    if (error) {
+        errorDisplay.textContent = error.message;
+        updateBtn.disabled = false;
+        updateBtn.textContent = 'Update profile';
+    } else {
+        location.assign('/');
     }
 });

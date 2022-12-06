@@ -35,7 +35,7 @@ export async function upsertProfile(profile) {
         .from('profiles')
         .upsert(profile, { onConflict: 'user_id' })
         .single();
-    return checkError(response);
+    return response;
 }
 
 export async function getProfile(user_id) {
@@ -44,7 +44,7 @@ export async function getProfile(user_id) {
         .select('*')
         .match({ user_id: user_id })
         .maybeSingle();
-    console.log(response);
+
     return response;
 }
 
