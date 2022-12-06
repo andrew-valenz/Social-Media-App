@@ -48,6 +48,12 @@ export async function getProfile(user_id) {
     return response;
 }
 
+export async function getProfiles() {
+    const response = await client.from('profiles').select();
+
+    return checkError(response);
+}
+
 export async function uploadImage(imagePath, imageFile) {
     const bucket = client.storage.from('avatars');
 
