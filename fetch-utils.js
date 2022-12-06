@@ -83,6 +83,7 @@ export async function incrementLikes(id) {
         .from('profiles')
         .update({ likes: profile.likes + 1 })
         .match({ id });
+    console.log('response', response);
     return checkError(response);
 }
 

@@ -7,13 +7,14 @@ export function renderProfile(profileObject) {
     div.classList.add('profile-list-item');
     img.classList.add('avatar');
     a.classList.add('profile-link');
+    p.classList.add('likes');
 
     img.src = profileObject.avatar_url;
     img.alt = 'avatar';
-    p.textContent = `👍${profileObject.likes}`;
+    p.textContent = `👍 ${profileObject.likes}`;
     a.textContent = `${profileObject.username}`;
     a.href = `../profile/?id=${profileObject.id}`;
 
-    div.append(img, a, p);
+    div.append(a, img, p);
     return div;
 }

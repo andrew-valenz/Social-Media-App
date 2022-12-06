@@ -48,7 +48,7 @@ function renderLikes({ likes, username, id }) {
 
         downButton.addEventListener('click', async () => {
             await decrementLikes(id);
-            const response = await fetchAndDisplayProfile();
+            await fetchAndDisplayProfile();
         });
         upButton.addEventListener('click', async () => {
             await incrementLikes(id);
