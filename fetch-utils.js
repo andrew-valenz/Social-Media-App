@@ -76,12 +76,9 @@ export async function uploadImage(imagePath, imageFile) {
     return url;
 }
 
-function checkError(response) {
-    return response.error ? console.error(response.error) : response.data;
-}
-
 export async function incrementLikes(id) {
     const profile = await getProfileById(id);
+    // console.log('profile', profile);
     const response = await client
         .from('profiles')
         .update({ likes: profile.likes + 1 })
@@ -96,4 +93,8 @@ export async function decrementLikes(id) {
         .update({ likes: profile.likes - 1 })
         .match({ id });
     return checkError(response);
+}
+
+function checkError(response) {
+    return response.error ? console.error(response.error) : response.data;
 }
