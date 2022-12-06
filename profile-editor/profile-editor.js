@@ -1,5 +1,5 @@
-// import '../auth/user.js';
-import { getUser, upsertProfile } from '../fetch-utils.js';
+import '../auth/user.js';
+import { getProfile, getUser, upsertProfile } from '../fetch-utils.js';
 
 const profileForm = document.getElementById('profile-form');
 const updateBtn = profileForm.querySelector('button');
@@ -15,8 +15,10 @@ const user = getUser();
 
 window.addEventListener('load', async () => {
     const response = await getProfile(user.id);
+    console.log('user', user);
     error = response.error;
     profile = response.data;
+    console.log('profile', profile);
 
     if (error) {
         errorDisplay.textContent = error.message;

@@ -38,6 +38,16 @@ export async function upsertProfile(profile) {
     return checkError(response);
 }
 
+export async function getProfile(user_id) {
+    const response = await client
+        .from('profiles')
+        .select('*')
+        .match({ user_id: user_id })
+        .maybeSingle();
+    console.log(response);
+    return response;
+}
+
 function checkError(response) {
     return response.error ? console.error(response.error) : response.data;
 }
