@@ -48,6 +48,12 @@ export async function getProfile(user_id) {
     return response;
 }
 
+export async function getProfileById(id) {
+    const response = await client.from('profiles').select('*').match({ id }).single();
+
+    return checkError(response);
+}
+
 export async function getProfiles() {
     const response = await client.from('profiles').select();
 
@@ -72,4 +78,22 @@ export async function uploadImage(imagePath, imageFile) {
 
 function checkError(response) {
     return response.error ? console.error(response.error) : response.data;
+}
+
+export async function incrementLikes(id) {
+    const profile = await getProfileById(id);
+    const response = await client
+        .from('profiles')
+        .update({ likes: profile.likes + 1 })
+        .match({ id });
+    return checkError(response);
+}
+
+export async function decrementLikes(id) {
+    const profile = await getProfileById(id);
+    const response = await client
+        .from('profiles')
+        .update({ likes: profile.likes - 1 })
+        .match({ id });
+    return checkError(response);
 }

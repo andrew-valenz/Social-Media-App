@@ -18,7 +18,7 @@ window.addEventListener('load', async () => {
     const response = await getProfile(user.id);
     // console.log('user', user);
     error = response.error;
-    profile = response;
+    profile = response.data;
     // console.log('profile', profile);
 
     if (error) {
