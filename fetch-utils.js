@@ -48,6 +48,22 @@ export async function getProfile(user_id) {
     return response;
 }
 
+export async function uploadImage(imagePath, imageFile) {
+    const bucket = client.storage.from('avatars');
+
+    const response = await bucket.upload(imagePath, imageFile, {
+        cacheControl: '3600',
+        upsert: true,
+    });
+
+    if (response.error) {
+        return null;
+    }
+    const url = `${SUPABASE_URL}/storage/v1/object/public/${response.data.Key}`;
+
+    return url;
+}
+
 function checkError(response) {
     return response.error ? console.error(response.error) : response.data;
 }

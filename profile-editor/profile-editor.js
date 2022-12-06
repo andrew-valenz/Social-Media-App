@@ -1,5 +1,5 @@
 import '../auth/user.js';
-import { getProfile, getUser, upsertProfile } from '../fetch-utils.js';
+import { getProfile, getUser, uploadImage, upsertProfile } from '../fetch-utils.js';
 
 const profileForm = document.getElementById('profile-form');
 const updateBtn = profileForm.querySelector('button');
@@ -7,6 +7,7 @@ const userNameInput = profileForm.querySelector('[name=username]');
 const avatarInput = profileForm.querySelector('[name=avatar]');
 const bioInput = profileForm.querySelector('[name=bio]');
 const errorDisplay = document.getElementById('error-display');
+const preview = document.getElementById('preview');
 
 let error = null;
 let profile = null;
@@ -25,9 +26,12 @@ window.addEventListener('load', async () => {
     } else {
         if (profile) {
             userNameInput.value = profile.username;
-        }
-        if (profile.bio) {
-            bioInput.value = profile.bio;
+            if (profile.avatar_url) {
+                preview.src = profile.avatar_url;
+            }
+            if (profile.bio) {
+                bioInput.value = profile.bio;
+            }
         }
     }
 });
@@ -43,7 +47,14 @@ profileForm.addEventListener('submit', async (e) => {
         username: formData.get('username'),
         bio: formData.get('bio'),
     };
+    const imageFile = formData.get('avatar');
+    if (imageFile.size) {
+        const imagePath = `${user.id}/${imageFile.name}`;
 
+        const url = await uploadImage(imagePath, imageFile);
+
+        profileObj.avatar_url = url;
+    }
     // console.log('profileObj', profileObj);
     const response = await upsertProfile(profileObj);
 
@@ -56,5 +67,14 @@ profileForm.addEventListener('submit', async (e) => {
         updateBtn.textContent = 'Update profile';
     } else {
         location.assign('/');
+    }
+});
+
+avatarInput.addEventListener('change', () => {
+    const file = avatarInput.files[0];
+    if (file) {
+        preview.src = URL.createObjectURL(file);
+    } else {
+        preview.src = '/assets/alchemy-favicon.png';
     }
 });
