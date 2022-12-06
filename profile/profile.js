@@ -9,6 +9,7 @@ import {
 const imgEl = document.querySelector('#avatar-image');
 const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
+const headerTitle = document.querySelector('.title');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -24,12 +25,14 @@ window.addEventListener('load', async () => {
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     const profile = await getProfileById(id);
+    headerTitle.textContent = `${profile.username}'s Page`;
     const bio = document.createElement('p');
     bio.textContent = profile.bio;
     imgEl.src = profile.avatar_url;
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
-    profileDetailEl.append(bio, profileLikes);
+    profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes);
+    profileDetailEl.classList.add('profile-detail');
 }
 
 function renderLikes({ likes, username, id }) {
@@ -40,9 +43,10 @@ function renderLikes({ likes, username, id }) {
         const profileLikes = document.createElement('div');
 
         profileLikes.classList.add('profile-likes');
-        profileLikes.append(p, downButton, upButton);
-        downButton.textContent = 'downvote user 👎';
-        upButton.textContent = 'upvote user 👍';
+        profileLikes.append(p, upButton, downButton);
+
+        downButton.textContent = 'dislike 👎';
+        upButton.textContent = 'like ❤️';
         p.classList.add('profile-name');
         p.textContent = `${username} has ${likes} likes`;
 

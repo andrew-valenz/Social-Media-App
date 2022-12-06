@@ -91,6 +91,32 @@ main {
     padding: 15px;
 }
 
+.profile-detail h2 {
+    font-size: 36px;
+}
+
+.profile-detail {
+    background-color: #344966;
+    font-size: 20px;
+    color: #f0f4ef;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+    align-items: center;
+    border-radius: 15%;
+    padding: 10px;
+}
+.profile-likes {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.profile-likes button {
+    border-radius: 15px;
+    background: #b4cded;
+}
 .profile-link {
     margin-left: 5px;
     margin-right: 10px;
@@ -99,4 +125,9 @@ main {
 
 .likes {
     color: beige;
+}
+
+.profile-page {
+    display: flex;
+    justify-content: center;
 }
