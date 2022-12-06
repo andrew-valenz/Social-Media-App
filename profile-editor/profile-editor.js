@@ -77,6 +77,6 @@ avatarInput.addEventListener('change', () => {
     if (file) {
         preview.src = URL.createObjectURL(file);
     } else {
-        preview.src = '/assets/alchemy-favicon.png';
+        preview.src = '/assets/PetDefaultImage.png';
     }
 });

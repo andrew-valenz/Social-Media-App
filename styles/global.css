@@ -51,7 +51,11 @@ body {
 
 .page-header a {
     color: #234058;
-    border: ;
+    border: solid rgb(58, 58, 58) 2px;
+    color: #f0f4ef;
+    background: rgb(7, 5, 68);
+    border-radius: 15px;
+    text-decoration: none;
 }
 
 main {
@@ -128,6 +132,22 @@ main {
 }
 
 .profile-page {
+    display: flex;
+    justify-content: center;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #344966;
+    max-width: fit-content;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 15px;
+}
+
+.profile-editor {
     display: flex;
     justify-content: center;
 }
