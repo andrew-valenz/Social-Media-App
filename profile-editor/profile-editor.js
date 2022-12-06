@@ -13,13 +13,14 @@ let error = null;
 let profile = null;
 
 const user = getUser();
+console.log('user', user);
 
 window.addEventListener('load', async () => {
     const response = await getProfile(user.id);
     // console.log('user', user);
     error = response.error;
     profile = response.data;
-    // console.log('profile', profile);
+    console.log('response', response);
 
     if (error) {
         errorDisplay.textContent = error.message;
@@ -46,6 +47,7 @@ profileForm.addEventListener('submit', async (e) => {
     const profileObj = {
         username: formData.get('username'),
         bio: formData.get('bio'),
+        user_id: user.id,
     };
     const imageFile = formData.get('avatar');
     if (imageFile.size) {
