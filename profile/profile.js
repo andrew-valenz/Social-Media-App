@@ -24,11 +24,12 @@ window.addEventListener('load', async () => {
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     const profile = await getProfileById(id);
+    const bio = document.createElement('p');
+    bio.textContent = profile.bio;
     imgEl.src = profile.avatar_url;
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
-    console.log('likes', profileLikes);
-    profileDetailEl.append(profileLikes);
+    profileDetailEl.append(bio, profileLikes);
 }
 
 function renderLikes({ likes, username, id }) {
@@ -37,12 +38,13 @@ function renderLikes({ likes, username, id }) {
         const downButton = document.createElement('button');
         const upButton = document.createElement('button');
         const profileLikes = document.createElement('div');
+
         profileLikes.classList.add('profile-likes');
         profileLikes.append(p, downButton, upButton);
         downButton.textContent = 'downvote user 👎';
         upButton.textContent = 'upvote user 👍';
         p.classList.add('profile-name');
-        p.textContent = `${username} has ${likes}`;
+        p.textContent = `${username} has ${likes} likes`;
 
         downButton.addEventListener('click', async () => {
             await decrementLikes(id);
