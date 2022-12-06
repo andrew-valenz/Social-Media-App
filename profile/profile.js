@@ -26,9 +26,17 @@ async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     const profile = await getProfileById(id);
     headerTitle.textContent = `${profile.username}'s Page`;
+
     const bio = document.createElement('p');
     bio.textContent = profile.bio;
-    imgEl.src = profile.avatar_url;
+
+    // imgEl.src = profile.avatar_url;
+
+    if (profile.avatar_url === null) {
+        imgEl.src = '/assets/PetDefaultImage.png';
+    } else {
+        imgEl.src = profile.avatar_url;
+    }
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
     profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes);

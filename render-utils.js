@@ -9,7 +9,11 @@ export function renderProfile(profileObject) {
     a.classList.add('profile-link');
     p.classList.add('likes');
 
-    img.src = profileObject.avatar_url;
+    if (profileObject.avatar_url === null) {
+        img.src = './assets/PetDefaultImage.png';
+    } else {
+        img.src = profileObject.avatar_url;
+    }
     img.alt = 'avatar';
     p.textContent = `👍 ${profileObject.likes}`;
     a.textContent = `${profileObject.username}`;
