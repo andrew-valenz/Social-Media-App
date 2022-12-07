@@ -1,10 +1,11 @@
 import {
     decrementLikes,
     incrementLikes,
-    getProfile,
     getProfileById,
-    getUser,
     signOutUser,
+    getUser,
+    getProfile,
+    createMessage,
 } from '../fetch-utils.js';
 
 const imgEl = document.querySelector('#avatar-image');
@@ -12,6 +13,7 @@ const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
 const headerTitle = document.querySelector('.title');
 const signOutBtn = document.getElementById('sign-out-link');
+const messageForm = document.querySelector('.message-form');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -24,6 +26,28 @@ window.addEventListener('load', async () => {
     if (!id) {
         location.assign('/');
         return;
+    }
+    fetchAndDisplayProfile();
+});
+
+messageForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(messageForm);
+    const user = getUser();
+    console.log('user', user);
+    const senderProfile = await getProfile(user.id);
+    console.log('senderProfile', senderProfile);
+    if (!senderProfile) {
+        alert('Profile required before you can message, sorry!');
+        location.assign('/');
+    } else {
+        await createMessage({
+            text: data.get('message'),
+            sender: senderProfile.data.username,
+            recipient_id: id,
+            user_id: user.id,
+        });
+        messageForm.reset();
     }
     fetchAndDisplayProfile();
 });
