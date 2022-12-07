@@ -4,15 +4,21 @@ import {
     getProfile,
     getProfileById,
     getUser,
+    signOutUser,
 } from '../fetch-utils.js';
 
 const imgEl = document.querySelector('#avatar-image');
 const usernameHeaderEl = document.querySelector('.username-header');
 const profileDetailEl = document.querySelector('.profile-detail');
 const headerTitle = document.querySelector('.title');
+const signOutBtn = document.getElementById('sign-out-link');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
+
+signOutBtn.addEventListener('click', async () => {
+    await signOutUser();
+});
 
 window.addEventListener('load', async () => {
     if (!id) {
