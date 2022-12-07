@@ -68,3 +68,33 @@
     - error handling & button disable
     - profiles list
     - profile detail page & stars up and down votes
+
+-   working on the /profile page
+
+## Part B
+
+### HTML
+
+    - form for message input (with label and button)
+
+### Events
+
+    - page load -> add subscribing for realtime updates on CREATE of message
+    - form submit
+        - get user's form input values
+        - check sender user has profile info
+        - send message to supabase
+        - reset the form
+        - (before we implement realtime) call our fetchAndDisplay function
+
+### Functions
+
+    - createMessage
+    - onMessage (for realtime)
+
+### Slices
+
+    - messages table in supabase
+        - will have id, created_at, text, sender, recipient_id(link to profile.id), user_id
+    - create Messsage functionality
+    - implement realtime updates
