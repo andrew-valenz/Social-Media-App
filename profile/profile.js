@@ -32,7 +32,7 @@ window.addEventListener('load', async () => {
 
 messageForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = new.formData(messageForm);
+    const data = new FormData(messageForm);
     const user = getUser();
     const senderProfile = await getProfile(user.id);
     if (!senderProfile) {
@@ -48,7 +48,6 @@ messageForm.addEventListener('submit', async (e) => {
         messageForm.reset();
     }
 });
-
 
 signOutBtn.addEventListener('click', async () => {
     await signOutUser();
@@ -79,7 +78,8 @@ async function fetchAndDisplayProfile() {
     }
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
-    profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes);
+    const messagesList = renderMessages(profile);
+    profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes, messagesList);
     profileDetailEl.classList.add('profile-detail');
 }
 
