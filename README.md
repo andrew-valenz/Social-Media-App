@@ -1,4 +1,7 @@
 ![](./assets/wireframe.png)
+![](./assets/supabaseTable.png)
+![](./assets/policies.png)
+![](./assets/bucket.png)
 
 # Plan
 
