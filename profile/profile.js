@@ -30,6 +30,26 @@ window.addEventListener('load', async () => {
     });
 });
 
+messageForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new.formData(messageForm);
+    const user = getUser();
+    const senderProfile = await getProfile(user.id);
+    if (!senderProfile) {
+        alert('You must make your profile before you can send messages');
+        location.assign('/');
+    } else {
+        await createMessage({
+            text: data.get('message'),
+            sender: senderProfile.data.username,
+            recipient_id: id,
+            user_id: user.id,
+        });
+        messageForm.reset();
+    }
+});
+
+
 signOutBtn.addEventListener('click', async () => {
     await signOutUser();
 });
