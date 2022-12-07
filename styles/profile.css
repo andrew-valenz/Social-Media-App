@@ -1,4 +1,5 @@
 .profile-list-item {
+    font-family: var(--primary-font);
     display: flex;
     flex-direction: row;
     align-items: center;
