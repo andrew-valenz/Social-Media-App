@@ -68,3 +68,28 @@
     - error handling & button disable
     - profiles list
     - profile detail page & stars up and down votes
+
+    ### PART B (MESSAGING)
+
+    Profile Page
+
+    -HTML
+
+    form with label and button (for message input)
+
+    -EVENTS
+
+    on load
+    -subscribe for realtime on messageCreate
+
+    on formSubmit
+    -get values from form input
+    -check sender has profile
+    -send message to supabase
+    -form reset
+    -fetchAndDisplay()
+    THEN REALTIME BABY!
+
+    -Funcs
+    -createMessage
+    -onMessage (this is realtime)
