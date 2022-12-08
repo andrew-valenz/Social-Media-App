@@ -44,7 +44,6 @@ export async function getProfile(user_id) {
         .select('*')
         .match({ user_id: user_id })
         .maybeSingle();
-    console.log(response);
     return response;
 }
 
