@@ -6,6 +6,7 @@ import {
     getUser,
     signOutUser,
     createMessage,
+    onMessage,
 } from '../fetch-utils.js';
 import { renderMessages } from '../render-utils.js';
 
@@ -31,6 +32,10 @@ window.addEventListener('load', async () => {
         return;
     }
     fetchAndDisplayProfile();
+
+    onMessage(id, async (payload) => {
+        fetchAndDisplayProfile();
+    });
 });
 
 export async function fetchAndDisplayProfile() {

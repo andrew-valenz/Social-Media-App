@@ -104,6 +104,10 @@ export async function deleteMessage(message) {
     return response.data;
 }
 
+export function onMessage(profileId, handleMessage) {
+    client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
+}
+
 function checkError(response) {
     return response.error ? console.error(response.error) : response.data;
 }
