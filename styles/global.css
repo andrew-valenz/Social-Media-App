@@ -197,6 +197,7 @@ section {
 }
 .message-form input {
     margin: 2px;
+    width: 100%;
 }
 
 .message-form button {

@@ -17,6 +17,7 @@ const profileDetailEl = document.querySelector('.profile-detail');
 const headerTitle = document.querySelector('.title');
 const signOutBtn = document.getElementById('sign-out-link');
 const messageForm = document.querySelector('.message-form');
+const messageHeader = document.getElementById('message-header');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -67,6 +68,7 @@ async function fetchAndDisplayProfile() {
     const bio = document.createElement('p');
     bio.textContent = profile.bio;
 
+    messageHeader.textContent = `Send ${profile.username} a message!`;
     // imgEl.src = profile.avatar_url;
 
     if (profile.avatar_url === null) {
