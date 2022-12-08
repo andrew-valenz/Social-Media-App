@@ -12,11 +12,10 @@ import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-image');
 const usernameHeaderEl = document.querySelector('.username-header');
-const profileDetailEl = document.querySelector('.profile-detail');
+const profileDetailEl = document.querySelector('.message-container');
 const headerTitle = document.querySelector('.title');
 const signOutBtn = document.getElementById('sign-out-link');
 const messageForm = document.querySelector('.message-form');
-const messages = document.querySelector('.messages-container');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -77,7 +76,7 @@ async function fetchAndDisplayProfile() {
     const messagesList = renderMessages(profile);
     // console.log('messagesList', messagesList);
     profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes, messagesList);
-    profileDetailEl.classList.add('profile-detail');
+    // profileDetailEl.classList.add('profile-detail');
 }
 
 function renderLikes({ likes, username, id }) {

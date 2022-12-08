@@ -116,13 +116,14 @@ section {
     color: #f0f4ef;
     display: flex;
     flex-direction: column;
-    width: 250px;
+    /* width: 250px; */
     margin: auto;
     align-items: center;
     border-radius: 25px;
     padding: 20px;
     box-shadow: 5px 5px 5px grey;
 }
+
 .profile-likes {
     display: flex;
     flex-direction: column;

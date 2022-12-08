@@ -17,26 +17,29 @@
         <title>Profile View</title>
     </head>
     <body>
-        <header class="page-header">
-            <img class="logo" src="/assets/icons8-cat-caregivers-50.png" />
-            <p class="title"></p>
-            <nav>
-                <a href="../">Back to Profile List</a>
-                <a id="sign-out-link" href="../auth/">Sign Out</a>
-            </nav>
-        </header>
-        <main class="profile-page">
-            <img id="avatar-image" class="avatar" src="/assets/alchemy-favicon.png" />
-            <h2 class="username-header"></h2>
-            <div class="message-container"></div>
-            <div class="profile-detail"></div>
-            <form class="message-form">
-                <label>
-                    <p class="message-prompt"></p>
-                    <input name="message" />
-                </label>
-                <button type="submit">Send message</button>
-            </form>
+        <main>
+            <header class="page-header">
+                <img class="logo" src="/assets/icons8-cat-caregivers-50.png" />
+                <p class="title"></p>
+                <nav>
+                    <a href="../">Back to Profile List</a>
+                    <a id="sign-out-link" href="../auth/">Sign Out</a>
+                </nav>
+            </header>
+            <div class="profile-page">
+                <img id="avatar-image" class="avatar" src="/assets/alchemy-favicon.png" />
+                <h2 class="username-header"></h2>
+                <div class="profile-detail">
+                    <div class="message-container"></div>
+                    <form class="message-form">
+                        <label>
+                            <p class="message-prompt"></p>
+                            <input name="message" />
+                        </label>
+                        <button type="submit">Send message</button>
+                    </form>
+                </div>
+            </div>
         </main>
     </body>
 </html>
