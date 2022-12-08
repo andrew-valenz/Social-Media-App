@@ -28,12 +28,12 @@ export function renderMessages(profile) {
     const header = document.createElement('h3');
 
     header.textContent = `Message Feed for ${profile.username}`;
+    console.log('profile.username', profile.messages);
 
     ul.classList.add('messages');
-
     ul.append(header);
     for (let i = 0; i < profile.messages.length; i++) {
-        const li = document.createElement('p');
+        const li = document.createElement('li');
         li.classList.add('message');
 
         const div = document.createElement('div');
@@ -45,7 +45,7 @@ export function renderMessages(profile) {
 
         const dateSpan = document.createElement('span');
         dateSpan.classList.add('created-date');
-        dateSpan.textContent = new Date(profile.messages[i].created_at).toLocalString('en-US', {
+        dateSpan.textContent = new Date(profile.messages[i].created_at).toLocaleString('en-US', {
             day: 'numeric',
             month: 'numeric',
             year: 'numeric',

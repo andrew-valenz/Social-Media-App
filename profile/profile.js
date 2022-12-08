@@ -1,4 +1,5 @@
 import {
+    createMessage,
     decrementLikes,
     incrementLikes,
     getProfile,
@@ -7,6 +8,7 @@ import {
     signOutUser,
     onMessage,
 } from '../fetch-utils.js';
+import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-image');
 const usernameHeaderEl = document.querySelector('.username-header');
@@ -14,6 +16,7 @@ const profileDetailEl = document.querySelector('.profile-detail');
 const headerTitle = document.querySelector('.title');
 const signOutBtn = document.getElementById('sign-out-link');
 const messageForm = document.querySelector('.message-form');
+const messages = document.querySelector('.messages-container');
 
 const params = new URLSearchParams(location.search);
 const id = params.get('id');
@@ -25,7 +28,8 @@ window.addEventListener('load', async () => {
     }
     fetchAndDisplayProfile();
 
-    onMessage(id, async (payload) => {
+    await onMessage(id, async (payload) => {
+        console.log('payload', payload);
         fetchAndDisplayProfile();
     });
 });
@@ -53,14 +57,6 @@ signOutBtn.addEventListener('click', async () => {
     await signOutUser();
 });
 
-window.addEventListener('load', async () => {
-    if (!id) {
-        location.assign('/');
-        return;
-    }
-    fetchAndDisplayProfile();
-});
-
 async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     const profile = await getProfileById(id);
@@ -79,6 +75,7 @@ async function fetchAndDisplayProfile() {
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
     const messagesList = renderMessages(profile);
+    // console.log('messagesList', messagesList);
     profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes, messagesList);
     profileDetailEl.classList.add('profile-detail');
 }
