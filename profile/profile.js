@@ -33,7 +33,7 @@ window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
 });
 
-async function fetchAndDisplayProfile() {
+export async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     messagesEl.textContent = '';
     messageHeaderEl.textContent = '';

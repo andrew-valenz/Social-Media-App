@@ -1,3 +1,6 @@
+import { deleteMessage } from './fetch-utils.js';
+import { fetchAndDisplayProfile } from './profile/profile.js';
+
 export function renderProfile(profileObject) {
     const div = document.createElement('div');
     const img = document.createElement('img');
@@ -38,6 +41,11 @@ export function renderMessages(profile) {
     for (let i = profile.messages.length - 1; i > -1; i--) {
         const li = document.createElement('p');
         li.classList.add('message');
+
+        li.addEventListener('click', async () => {
+            await deleteMessage(profile.messages[i]);
+            await fetchAndDisplayProfile();
+        });
 
         const div = document.createElement('div');
         div.classList.add('message-info');

@@ -184,6 +184,8 @@ section {
 }
 .message-info {
     font-size: 15px;
+    color: aqua;
+    flex-wrap: wrap;
 }
 
 .message-section {
@@ -192,7 +194,9 @@ section {
     padding: 20px;
     justify-content: space-between;
     height: 50%;
+    width: 400px;
     overflow: scroll;
+    box-shadow: 5px 5px 5px grey;
 }
 
 .message-section h3 {

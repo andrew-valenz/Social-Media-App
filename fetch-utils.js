@@ -99,6 +99,11 @@ export async function createMessage(message) {
     const response = await client.from('messages').insert(message).single();
 }
 
+export async function deleteMessage(message) {
+    const response = await client.from('messages').delete().match({ id: message.id }).single();
+    return response.data;
+}
+
 function checkError(response) {
     return response.error ? console.error(response.error) : response.data;
 }
