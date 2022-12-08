@@ -6,7 +6,10 @@ import {
     getUser,
     getProfile,
     createMessage,
+    onMessage,
 } from '../fetch-utils.js';
+
+import { renderMessages } from '../render-utils.js';
 
 const imgEl = document.querySelector('#avatar-image');
 const usernameHeaderEl = document.querySelector('.username-header');
@@ -30,13 +33,18 @@ window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
 });
 
+onMessage(id, async (payload) => {
+    console.log('payload', payload);
+    fetchAndDisplayProfile();
+});
+
 messageForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = new FormData(messageForm);
     const user = getUser();
-    console.log('user', user);
+
     const senderProfile = await getProfile(user.id);
-    console.log('senderProfile', senderProfile);
+
     if (!senderProfile) {
         alert('Profile required before you can message, sorry!');
         location.assign('/');
@@ -49,7 +57,7 @@ messageForm.addEventListener('submit', async (e) => {
         });
         messageForm.reset();
     }
-    fetchAndDisplayProfile();
+    // await fetchAndDisplayProfile();
 });
 
 async function fetchAndDisplayProfile() {
@@ -69,7 +77,8 @@ async function fetchAndDisplayProfile() {
     }
     usernameHeaderEl.textContent = profile.username;
     const profileLikes = renderLikes(profile);
-    profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes);
+    const messagesList = renderMessages(profile);
+    profileDetailEl.append(imgEl, usernameHeaderEl, bio, profileLikes, messagesList);
     profileDetailEl.classList.add('profile-detail');
 }
 

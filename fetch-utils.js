@@ -49,7 +49,7 @@ export async function getProfile(user_id) {
 }
 
 export async function getProfileById(id) {
-    const response = await client.from('profiles').select('*').match({ id }).single();
+    const response = await client.from('profiles').select('*, messages(*)').match({ id }).single();
 
     return checkError(response);
 }
@@ -99,6 +99,10 @@ export async function decrementLikes(id) {
 export async function createMessage(message) {
     const response = await client.from('messages').insert(message).single();
     return checkError(response);
+}
+
+export async function onMessage(profileId, handleMessage) {
+    client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
 }
 
 function checkError(response) {
