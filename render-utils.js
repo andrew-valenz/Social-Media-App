@@ -1,5 +1,6 @@
 import { deleteMessage } from './fetch-utils.js';
 import { fetchAndDisplayProfile } from './profile/profile.js';
+// import { fetchAndDisplayProfile } from './profile/profile.js';
 
 export function renderProfile(profileObject) {
     const div = document.createElement('div');
