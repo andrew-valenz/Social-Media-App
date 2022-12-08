@@ -28,7 +28,7 @@ export function renderMessages(profile) {
     const header = document.createElement('h3');
 
     header.textContent = `Message feed for ${profile.username}`;
-    console.log('profile.messages', profile.messages);
+
     ul.classList.add('messages');
 
     ul.append(header);
