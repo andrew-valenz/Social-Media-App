@@ -69,6 +69,10 @@ section {
     border-radius: 15px;
 }
 
+.profile-info {
+    background: none;
+}
+
 .avatar {
     height: 100px;
     width: 100px;
@@ -146,7 +150,8 @@ section {
 
 .profile-page {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 #profile-form {
@@ -165,20 +170,47 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-
-/* #profile-form textarea {
-    display: flex;
-    flex-direction: column;
-}
-
-#profile-form {
-    display: flex;
-    flex-direction: column;
-} */
 
 .profile-editor {
     display: flex;
     justify-content: center;
     /* flex-direction: column; */
+}
+
+.message {
+    color: rgb(255, 255, 255);
+}
+.message-info {
+    font-size: 15px;
+}
+
+.message-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+    height: 50%;
+    overflow: scroll;
+}
+
+.message-section h3 {
+    /* justify-content: flex-start; */
+    margin: 10px;
+    /* margin-bottom: 50%; */
+}
+
+.message-form {
+    margin: 10px;
+}
+
+.message-form {
+}
+
+.message-header {
+    color: white;
+    background-color: #234058;
+    font-size: 25px;
+    display: flex;
 }

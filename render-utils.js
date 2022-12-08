@@ -26,15 +26,16 @@ export function renderProfile(profileObject) {
 export function renderMessages(profile) {
     const ul = document.createElement('ul');
     const header = document.createElement('h3');
+    header.classList.add('message-header');
 
     header.textContent = `Message Feed for ${profile.username}`;
 
     ul.classList.add('messages');
 
-    ul.append(header);
+    // ul.append(header);
     //for (let message of profile.messages)
     // substitute "message" for "profile.messages[i]"
-    for (let i = 0; i < profile.messages.length; i++) {
+    for (let i = profile.messages.length - 1; i > -1; i--) {
         const li = document.createElement('p');
         li.classList.add('message');
 
@@ -43,7 +44,7 @@ export function renderMessages(profile) {
 
         const senderSpan = document.createElement('span');
         senderSpan.classList.add('from');
-        senderSpan.textContent = profile.messages[i].from_user;
+        senderSpan.textContent = `from: ${profile.messages[i].sender} `;
 
         const dateSpan = document.createElement('span');
         dateSpan.classList.add('created-date');
@@ -57,11 +58,11 @@ export function renderMessages(profile) {
 
         const text = document.createElement('p');
         text.classList.add('text');
-        text.textContent = profile.messages[i].text;
+        text.textContent = `"${profile.messages[i].text}"`;
 
         div.append(senderSpan, dateSpan);
 
-        li.append(div, text);
+        li.append(text, div);
 
         ul.append(li);
     }
