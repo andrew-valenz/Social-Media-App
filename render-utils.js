@@ -1,5 +1,5 @@
-import { deleteMessage } from './fetch-utils.js';
-import { fetchAndDisplayProfile } from './profile/profile.js';
+import { deleteMessage, getProfileById } from './fetch-utils.js';
+// import { fetchAndDisplayProfile } from './profile/profile.js';
 // import { fetchAndDisplayProfile } from './profile/profile.js';
 
 export function renderProfile(profileObject) {
@@ -35,17 +35,25 @@ export function renderMessages(profile) {
     header.textContent = `Message Feed for ${profile.username}`;
 
     ul.classList.add('messages');
-
-    // ul.append(header);
-    //for (let message of profile.messages)
-    // substitute "message" for "profile.messages[i]"
     for (let i = profile.messages.length - 1; i > -1; i--) {
         const li = document.createElement('p');
         li.classList.add('message');
 
         li.addEventListener('click', async () => {
             await deleteMessage(profile.messages[i]);
-            await fetchAndDisplayProfile();
+
+            const messagesEl = document.querySelector('.messages');
+            const messageHeaderEl = document.querySelector('.message-header');
+            messagesEl.textContent = '';
+            messageHeaderEl.textContent = '';
+
+            const headerEl = document.createElement('h3');
+            const currentProfile = await getProfileById(profile.id);
+
+            const messagesList = renderMessages(currentProfile);
+            headerEl.textContent = `Messages for ${profile.username}`;
+            messagesEl.append(messagesList);
+            messageHeaderEl.append(headerEl);
         });
 
         const div = document.createElement('div');

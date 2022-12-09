@@ -34,11 +34,11 @@ window.addEventListener('load', async () => {
     fetchAndDisplayProfile();
 
     onMessage(id, async (payload) => {
-        fetchAndDisplayProfile();
+        await fetchAndDisplayProfile();
     });
 });
 
-export async function fetchAndDisplayProfile() {
+async function fetchAndDisplayProfile() {
     profileDetailEl.textContent = '';
     messagesEl.textContent = '';
     messageHeaderEl.textContent = '';

@@ -82,7 +82,6 @@ export async function incrementLikes(id) {
         .from('profiles')
         .update({ likes: profile.likes + 1 })
         .match({ id });
-    console.log('response', response);
     return checkError(response);
 }
 
@@ -97,6 +96,8 @@ export async function decrementLikes(id) {
 
 export async function createMessage(message) {
     const response = await client.from('messages').insert(message).single();
+
+    return checkError(response);
 }
 
 export async function deleteMessage(message) {
