@@ -44,12 +44,11 @@ export async function getProfile(user_id) {
         .select('*')
         .match({ user_id: user_id })
         .maybeSingle();
-    console.log(response);
     return response;
 }
 
 export async function getProfileById(id) {
-    const response = await client.from('profiles').select('*').match({ id }).single();
+    const response = await client.from('profiles').select('*, messages(*)').match({ id }).single();
 
     return checkError(response);
 }
@@ -83,7 +82,6 @@ export async function incrementLikes(id) {
         .from('profiles')
         .update({ likes: profile.likes + 1 })
         .match({ id });
-    console.log('response', response);
     return checkError(response);
 }
 
@@ -94,6 +92,21 @@ export async function decrementLikes(id) {
         .update({ likes: profile.likes - 1 })
         .match({ id });
     return checkError(response);
+}
+
+export async function createMessage(message) {
+    const response = await client.from('messages').insert(message).single();
+
+    return checkError(response);
+}
+
+export async function deleteMessage(message) {
+    const response = await client.from('messages').delete().match({ id: message.id }).single();
+    return response.data;
+}
+
+export function onMessage(profileId, handleMessage) {
+    client.from(`messages:recipient_id=eq.${profileId}`).on('INSERT', handleMessage).subscribe();
 }
 
 function checkError(response) {

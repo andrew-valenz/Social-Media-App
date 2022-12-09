@@ -69,6 +69,10 @@ section {
     border-radius: 15px;
 }
 
+.profile-info {
+    background: none;
+}
+
 .avatar {
     height: 100px;
     width: 100px;
@@ -96,13 +100,14 @@ section {
 
 .profile-list-item {
     display: flex;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     background-color: #344966;
     border-radius: 25px;
     padding: 15px;
-    margin: 10px;
+    margin: 20px;
     box-shadow: 5px 5px 5px grey;
 }
 
@@ -145,7 +150,8 @@ section {
 
 .profile-page {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 #profile-form {
@@ -164,20 +170,55 @@ section {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
-
-/* #profile-form textarea {
-    display: flex;
-    flex-direction: column;
-}
-
-#profile-form {
-    display: flex;
-    flex-direction: column;
-} */
 
 .profile-editor {
     display: flex;
     justify-content: center;
     /* flex-direction: column; */
+}
+
+.message {
+    color: rgb(255, 255, 255);
+}
+.message-info {
+    font-size: 15px;
+    color: aqua;
+    flex-wrap: wrap;
+}
+
+.message-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+    height: 50%;
+    width: 400px;
+    overflow: scroll;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.message:hover {
+    cursor: pointer;
+    text-decoration: line-through;
+}
+.message-section h3 {
+    /* justify-content: flex-start; */
+    margin: 10px;
+    /* margin-bottom: 50%; */
+}
+
+.message-form {
+    margin: 10px;
+}
+
+.message-form {
+}
+
+.message-header {
+    color: white;
+    background-color: #234058;
+    font-size: 25px;
+    display: flex;
 }
