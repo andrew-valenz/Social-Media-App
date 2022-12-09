@@ -1,11 +1,12 @@
 :root {
     --background: rgb(224, 234, 247);
-    --header-background: white;
+    --header-background: #b4cded;
     --text-color: rgb(7, 5, 68);
     --label-color: rgb(75, 102, 98);
     --placeholder-color: rgb(136, 136, 153);
     --offset-color: rgb(217, 236, 217);
     --action-color: rgb(77, 132, 252);
+    --background-image: url('/assets/Pawprints-background.jpeg');
 
     --primary-font: 'Rubik', Corbel, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans',
         'DejaVu Sans', 'Bitstream Vera Sans', 'Liberation Sans', Verdana, 'Verdana Ref', sans-serif;
@@ -15,7 +16,7 @@ body {
     height: 100vh;
     font-family: var(--primary-font);
     color: var(--text-color);
-    background: var(--background);
+    background-image: url('/assets/pawprintbackground2.webp');
     display: grid;
     grid-template-rows: auto 1fr;
 }
@@ -29,9 +30,9 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-
+    font-family: var(--primary-font);
     background-color: var(--header-background);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(93, 89, 89, 0.24);
 }
 
 .page-header .logo {
@@ -49,13 +50,32 @@ body {
     gap: 10px;
 }
 
+.page-header a {
+    color: #234058;
+    border: solid rgb(58, 58, 58) 2px;
+    color: #f0f4ef;
+    background: rgb(7, 5, 68);
+    border-radius: 15px;
+    text-decoration: none;
+}
+
 main {
     padding: 20px;
 }
 
+section {
+    background: #0d1821;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.profile-info {
+    background: none;
+}
+
 .avatar {
-    height: 36px;
-    width: 36px;
+    height: 100px;
+    width: 100px;
     object-fit: cover;
     border: 1px solid var(--placeholder-color);
     border-radius: 100%;
@@ -68,4 +88,137 @@ main {
 
 .hidden {
     display: none;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.profile-list-item {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #344966;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.profile-detail h2 {
+    font-size: 36px;
+}
+
+.profile-detail {
+    background-color: #344966;
+    font-size: 20px;
+    color: #f0f4ef;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: auto;
+    align-items: center;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px grey;
+}
+.profile-likes {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.profile-likes button {
+    border-radius: 15px;
+    background: #b4cded;
+}
+.profile-link {
+    margin-left: 5px;
+    margin-right: 10px;
+    color: #f0f4ef;
+}
+
+.likes {
+    color: beige;
+}
+
+.profile-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: #344966;
+    max-width: fit-content;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 15px;
+    align-items: center;
+}
+
+#profile-form label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-editor {
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.message {
+    color: rgb(255, 255, 255);
+}
+.message-info {
+    font-size: 15px;
+    color: aqua;
+    flex-wrap: wrap;
+}
+
+.message-section {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+    height: 50%;
+    width: 400px;
+    overflow: scroll;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.message:hover {
+    cursor: pointer;
+    text-decoration: line-through;
+}
+.message-section h3 {
+    /* justify-content: flex-start; */
+    margin: 10px;
+    /* margin-bottom: 50%; */
+}
+
+.message-form {
+    margin: 10px;
+}
+
+.message-form {
+}
+
+.message-header {
+    color: white;
+    background-color: #234058;
+    font-size: 25px;
+    display: flex;
 }
